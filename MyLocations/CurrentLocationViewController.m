@@ -82,6 +82,11 @@
         return;
     }
     
+    CLLocationDistance distance = MAXFLOAT;
+    if (_location != nil) {
+        distance = [newlocation distanceFromLocation:_location];
+    }
+    
     if (_location == nil || _location.horizontalAccuracy > newlocation.horizontalAccuracy) {
         _lastLocationError = nil;
         _location = newlocation;
@@ -91,6 +96,10 @@
             NSLog(@"*** We're done!");
             [self stopLocationManager];
             [self configureGetButton];
+            
+            if (distance > 0) {
+                _performingReverseGeocoding = NO;
+            }
         }
         
         if (!_performingReverseGeocoding) {
@@ -110,6 +119,14 @@
                 _performingReverseGeocoding = NO;
                 [self updateLabels];
             }];
+        }
+    } else if (distance < 1.0) {
+        NSTimeInterval timeInterval = [newlocation.timestamp timeIntervalSinceNow];
+        if (timeInterval > 10) {
+            NSLog(@"*** Force done!");
+            [self stopLocationManager];
+            [self updateLabels];
+            [self configureGetButton];
         }
     }
 }
@@ -170,14 +187,29 @@
         _locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
         [_locationManager startUpdatingLocation];
         _updatingLocation = YES;
+        
+        [self performSelector:@selector(didTimeOut:) withObject:nil afterDelay:60];
     }
 }
 
 - (void)stopLocationManager {
     if (_updatingLocation) {
+        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(didTimeOut:) object:nil];
+        
         [_locationManager stopUpdatingLocation];
         _locationManager.delegate = nil;
         _updatingLocation = NO;
+        
+    }
+}
+
+- (void)didTimeOut:(id)obj {
+    NSLog(@"*** Time out");
+    if (_location == nil) {
+        [self stopLocationManager];
+        _lastLocationError = [NSError errorWithDomain:@"MyLocationErrorDomain" code:1 userInfo:nil];
+        [self updateLabels];
+        [self configureGetButton];
     }
 }
 
