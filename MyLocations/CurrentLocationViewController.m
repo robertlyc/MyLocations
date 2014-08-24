@@ -30,12 +30,21 @@
 {
     [super viewDidLoad];
 	[self updateLabels];
+    [self configureGetButton];
 }
 
 - (IBAction)getLocation:(id)sender {
-    _locationManager.delegate = self;
-    _locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
-    [_locationManager startUpdatingLocation];
+    if (_updatingLocation) {
+        [self stopLocationManager];
+    } else {
+        _location = nil;
+        _lastLocationError = nil;
+        
+        [self startLocationManager];
+    }
+
+    [self updateLabels];
+    [self configureGetButton];
 }
 
 #pragma mark - CLLocationManagerDelegate
@@ -50,14 +59,32 @@
     _lastLocationError = error;
     
     [self updateLabels];
+    [self configureGetButton];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
     CLLocation *newlocation = [locations lastObject];
     NSLog(@"didUpdateLocations %@", newlocation);
     
-    _location = newlocation;
-    [self updateLabels];
+    if ([newlocation.timestamp timeIntervalSinceNow] < -5.0) {
+        return;
+    }
+    
+    if (newlocation.horizontalAccuracy < 0) {
+        return;
+    }
+    
+    if (_location == nil || _location.horizontalAccuracy > newlocation.horizontalAccuracy) {
+        _lastLocationError = nil;
+        _location = newlocation;
+        [self updateLabels];
+        
+        if (newlocation.horizontalAccuracy <= _locationManager.desiredAccuracy) {
+            NSLog(@"*** We're done!");
+            [self stopLocationManager];
+            [self configureGetButton];
+        }
+    }
 }
 
 #pragma mark - UpdateLabels
@@ -88,6 +115,14 @@
         }
 
         self.messageLabel.text = statusMessage;
+    }
+}
+
+- (void)configureGetButton {
+    if (_updatingLocation) {
+        [self.getButton setTitle:@"Stop" forState:UIControlStateNormal];
+    } else {
+        [self.getButton setTitle:@"Get My Location" forState:UIControlStateNormal];
     }
 }
 
