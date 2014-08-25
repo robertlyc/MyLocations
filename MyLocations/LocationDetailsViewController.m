@@ -8,7 +8,7 @@
 
 #import "LocationDetailsViewController.h"
 
-@interface LocationDetailsViewController ()
+@interface LocationDetailsViewController () <UITextViewDelegate>
 
 @property (nonatomic, weak) IBOutlet UITextView *descriptionTextView;
 @property (nonatomic, weak) IBOutlet UILabel *categoryLabel;
@@ -19,12 +19,21 @@
 
 @end
 
-@implementation LocationDetailsViewController
+@implementation LocationDetailsViewController {
+    NSString *_descriptionText;
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    if (self = [super initWithCoder:aDecoder]) {
+        _descriptionText = @"";
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.descriptionTextView.text = @"";
+    self.descriptionTextView.text = _descriptionText;
     self.categoryLabel.text = @"";
     
     self.latitudeLabel.text = [NSString stringWithFormat:@"%.8f", self.coordinate.latitude];
@@ -40,6 +49,7 @@
 }
 
 - (IBAction)done:(id)sender {
+    NSLog(@"Description '%@'", _descriptionText);
     [self closeScreeen];
 }
 
@@ -69,6 +79,15 @@
     }
 }
 
+#pragma mark - UITextViewDelegate
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    _descriptionText = [textView.text stringByReplacingCharactersInRange:range withString:text];
+    return YES;
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView {
+    _descriptionText = textView.text;
+}
 
 #pragma mark - Utility
 
