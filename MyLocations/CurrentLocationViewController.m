@@ -7,6 +7,7 @@
 //
 
 #import "CurrentLocationViewController.h"
+#import "LocationDetailsViewController.h"
 
 @interface CurrentLocationViewController ()
 
@@ -213,14 +214,25 @@
     }
 }
 
-- (NSString *)stringFromPlacemark:(CLPlacemark *)thePalcemark {
-    return [NSString stringWithFormat:@"%@ %@\n%@ %@ %@", thePalcemark.subThoroughfare, thePalcemark.thoroughfare, thePalcemark.locality, thePalcemark.administrativeArea, thePalcemark.postalCode];
-}
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"TagLocation"]) {
+        UINavigationController *navigationController = segue.destinationViewController;
+        LocationDetailsViewController *controller = (LocationDetailsViewController *)navigationController.topViewController;
+        
+        controller.coordinate = _location.coordinate;
+        controller.placemark = _placemark;
+    }
+}
+
+#pragma mark - Utility
+- (NSString *)stringFromPlacemark:(CLPlacemark *)thePlacemark {
+    return [NSString stringWithFormat:@"%@ %@\n%@ %@ %@", thePlacemark.subThoroughfare, thePlacemark.thoroughfare, thePlacemark.locality, thePlacemark.administrativeArea, thePlacemark.postalCode];
 }
 
 @end

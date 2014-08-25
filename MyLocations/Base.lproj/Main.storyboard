@@ -278,6 +278,14 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="addressLabel" destination="Tq1-6G-s8B" id="0Jh-AH-6f1"/>
+                        <outlet property="categoryLabel" destination="FBM-UY-Wlj" id="rvm-rs-VlN"/>
+                        <outlet property="dateLabel" destination="zLY-3P-xf5" id="AGB-UM-2tj"/>
+                        <outlet property="descriptionTextView" destination="znx-GV-grL" id="So8-aQ-i4A"/>
+                        <outlet property="latitudeLabel" destination="B05-SE-QVV" id="2Zp-aF-cn1"/>
+                        <outlet property="longtitudeLabel" destination="4cv-nN-5al" id="4Zv-9n-Col"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jWE-sk-CT4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
