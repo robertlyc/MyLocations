@@ -23,6 +23,7 @@
 		E1985D7D19A5F5DF001562A2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E1985D7B19A5F5DF001562A2 /* InfoPlist.strings */; };
 		E1985D7F19A5F5DF001562A2 /* MyLocationsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E1985D7E19A5F5DF001562A2 /* MyLocationsTests.m */; };
 		E1985D8919A659E0001562A2 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1985D8819A659E0001562A2 /* CoreLocation.framework */; };
+		E1985D8C19AAD1D9001562A2 /* LocationDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1985D8B19AAD1D9001562A2 /* LocationDetailsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,8 @@
 		E1985D7C19A5F5DF001562A2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E1985D7E19A5F5DF001562A2 /* MyLocationsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyLocationsTests.m; sourceTree = "<group>"; };
 		E1985D8819A659E0001562A2 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		E1985D8A19AAD1D9001562A2 /* LocationDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationDetailsViewController.h; sourceTree = "<group>"; };
+		E1985D8B19AAD1D9001562A2 /* LocationDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationDetailsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +129,8 @@
 				E1985D6619A5F5DF001562A2 /* CurrentLocationViewController.m */,
 				E1985D6819A5F5DF001562A2 /* SecondViewController.h */,
 				E1985D6919A5F5DF001562A2 /* SecondViewController.m */,
+				E1985D8A19AAD1D9001562A2 /* LocationDetailsViewController.h */,
+				E1985D8B19AAD1D9001562A2 /* LocationDetailsViewController.m */,
 				E1985D6B19A5F5DF001562A2 /* Images.xcassets */,
 				E1985D5719A5F5DF001562A2 /* Supporting Files */,
 			);
@@ -262,6 +267,7 @@
 				E1985D6119A5F5DF001562A2 /* AppDelegate.m in Sources */,
 				E1985D6719A5F5DF001562A2 /* CurrentLocationViewController.m in Sources */,
 				E1985D5D19A5F5DF001562A2 /* main.m in Sources */,
+				E1985D8C19AAD1D9001562A2 /* LocationDetailsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
