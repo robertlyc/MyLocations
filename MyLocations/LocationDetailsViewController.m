@@ -59,6 +59,8 @@
 - (IBAction)done:(id)sender {
     HubView *hubView = [HubView hudView:self.navigationController.view animated:YES];
     hubView.text = @"Tagged";
+    
+    [self performSelector:@selector(closeScreeen) withObject:nil afterDelay:0.6];
 }
 
 - (IBAction)cancel:(id)sender {
