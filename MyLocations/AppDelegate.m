@@ -7,6 +7,15 @@
 //
 
 #import "AppDelegate.h"
+#import <CoreData/CoreData.h>
+
+@interface AppDelegate ()
+
+@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, strong) NSManagedObjectModel *managedObjectModel;
+@property (nonatomic, strong) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+
+@end
 
 @implementation AppDelegate
 
@@ -41,6 +50,51 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+#pragma mark - Core Data
+- (NSManagedObjectModel *)managedObjectModel {
+    if (_managedObjectModel == nil) {
+        NSString *modelPath = [[NSBundle mainBundle] pathForResource:@"DataModel" ofType:@"mond"];
+        NSURL *modelURL = [NSURL fileURLWithPath:modelPath];
+        _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
+    }
+    return _managedObjectModel;
+}
+
+- (NSString *)documentsDirectory {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentationDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths lastObject];
+    return documentsDirectory;
+}
+
+- (NSString *)dataStorePath {
+    return [[self documentsDirectory] stringByAppendingPathComponent:@"DataStore.sqlite"];
+}
+
+- (NSPersistentStoreCoordinator *)persistentStoreCoordinator {
+    if (_persistentStoreCoordinator == nil) {
+        NSURL *storeURL = [NSURL fileURLWithPath:[self dataStorePath]];
+        _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:self.managedObjectModel];
+        
+        NSError *error;
+        if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
+            NSLog(@"Error adding persisitent store %@, %@", error, [error userInfo]);
+            abort();
+        }
+    }
+    return _persistentStoreCoordinator;
+}
+
+- (NSManagedObjectContext *)managedObjectContext {
+    if (_managedObjectModel == nil) {
+        NSPersistentStoreCoordinator *coordinator = self.persistentStoreCoordinator;
+        if (coordinator != nil) {
+            _managedObjectContext = [[NSManagedObjectContext alloc] init];
+            _managedObjectContext.persistentStoreCoordinator = coordinator;
+        }
+    }
+    return _managedObjectContext;
 }
 
 @end
