@@ -8,6 +8,7 @@
 
 #import "LocationDetailsViewController.h"
 #import "CategoryPickerViewController.h"
+#import "HubView.h"
 
 @interface LocationDetailsViewController () <UITextViewDelegate>
 
@@ -56,8 +57,8 @@
 }
 
 - (IBAction)done:(id)sender {
-    NSLog(@"Description '%@'", _descriptionText);
-    [self closeScreeen];
+    HubView *hubView = [HubView hudView:self.navigationController.view animated:YES];
+    hubView.text = @"Tagged";
 }
 
 - (IBAction)cancel:(id)sender {
