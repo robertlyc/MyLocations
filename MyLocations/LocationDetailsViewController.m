@@ -9,6 +9,7 @@
 #import "LocationDetailsViewController.h"
 #import "CategoryPickerViewController.h"
 #import "HubView.h"
+#import "Location.h"
 
 @interface LocationDetailsViewController () <UITextViewDelegate>
 
@@ -24,12 +25,14 @@
 @implementation LocationDetailsViewController {
     NSString *_descriptionText;
     NSString *_categoryName;
+    NSDate *_date;
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
     if (self = [super initWithCoder:aDecoder]) {
         _descriptionText = @"";
         _categoryName = @"No Category";
+        _date = [NSDate date];
     }
     return self;
 }
@@ -49,7 +52,7 @@
         self.addressLabel.text = @"No Address Found";
     }
     
-    self.dateLabel.text = [self formatDate:[NSDate date]];
+    self.dateLabel.text = [self formatDate:_date];
     
     UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard:)];
     gestureRecognizer.cancelsTouchesInView = NO;
@@ -59,6 +62,21 @@
 - (IBAction)done:(id)sender {
     HubView *hubView = [HubView hudView:self.navigationController.view animated:YES];
     hubView.text = @"Tagged";
+    
+    Location *location = [NSEntityDescription insertNewObjectForEntityForName:@"Location" inManagedObjectContext:self.managedObjectContext];
+    
+    location.locationDesctription = _descriptionText;
+    location.category = _categoryName;
+    location.latitude = @(self.coordinate.latitude);
+    location.longtitude = @(self.coordinate.longitude);
+    location.date = _date;
+    location.placemark = _placemark;
+    
+    NSError *error;
+    if (![self.managedObjectContext save:&error]) {
+        FATAL_CORE_DATA_ERROR(error);
+        return;
+    }
     
     [self performSelector:@selector(closeScreeen) withObject:nil afterDelay:0.6];
 }
