@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "CurrentLocationViewController.h"
 #import <CoreData/CoreData.h>
 
 @interface AppDelegate ()
@@ -21,7 +22,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    UITabBarController *tabBarController = (UITabBarController *)self.window.rootViewController;
+    CurrentLocationViewController *currentLocationViewController = (CurrentLocationViewController *)tabBarController.viewControllers[0];
+    currentLocationViewController.managedObjectContext = self.managedObjectContext;
+    
     return YES;
 }
 							
@@ -55,7 +59,7 @@
 #pragma mark - Core Data
 - (NSManagedObjectModel *)managedObjectModel {
     if (_managedObjectModel == nil) {
-        NSString *modelPath = [[NSBundle mainBundle] pathForResource:@"DataModel" ofType:@"mond"];
+        NSString *modelPath = [[NSBundle mainBundle] pathForResource:@"DataModel" ofType:@"momd"];
         NSURL *modelURL = [NSURL fileURLWithPath:modelPath];
         _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
     }
