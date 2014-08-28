@@ -40,6 +40,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    if (self.locationToEdit != nil) {
+        self.title = @"Edit Location";
+    }
+    
     self.descriptionTextView.text = _descriptionText;
     self.categoryLabel.text = _categoryName;
     
@@ -61,10 +65,17 @@
 
 - (IBAction)done:(id)sender {
     HubView *hubView = [HubView hudView:self.navigationController.view animated:YES];
-    hubView.text = @"Tagged";
     
-    Location *location = [NSEntityDescription insertNewObjectForEntityForName:@"Location" inManagedObjectContext:self.managedObjectContext];
+    Location *location = nil;
+    if (self.locationToEdit != nil) {
+        hubView.text = @"Update";
+        location = self.locationToEdit;
+    } else {
+        hubView.text = @"Tagged";
+        location = [NSEntityDescription insertNewObjectForEntityForName:@"Location" inManagedObjectContext:self.managedObjectContext];
+    }
     
+ 
     location.locationDesctription = _descriptionText;
     location.category = _categoryName;
     location.latitude = @(self.coordinate.latitude);
@@ -170,6 +181,21 @@
     CategoryPickerViewController *viewController = segue.sourceViewController;
     _categoryName = viewController.selectedCategoryName;
     self.categoryLabel.text = _categoryName;
+}
+
+- (void)setLocationToEdit:(Location *)locationToEdit {
+    if (_locationToEdit != locationToEdit) {
+        _locationToEdit = locationToEdit;
+        
+        _descriptionText = _locationToEdit.locationDesctription;
+        _categoryName = _locationToEdit.category;
+        _date = _locationToEdit.date;
+        
+        self.coordinate = CLLocationCoordinate2DMake(
+                            [_locationToEdit.latitude doubleValue],
+                            [_locationToEdit.longtitude doubleValue]);
+        self.placemark = _locationToEdit.placemark;
+    }
 }
 
 @end

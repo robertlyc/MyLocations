@@ -9,6 +9,7 @@
 #import "LocationsViewController.h"
 #import "Location.h"
 #import "LocationCell.h"
+#import "LocationDetailsViewController.h"
 
 @interface LocationsViewController ()
 
@@ -83,6 +84,18 @@
                                           [location.longtitude doubleValue]];
     }
     
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"EditLocation"]) {
+        UINavigationController *navigationController = segue.destinationViewController;
+        LocationDetailsViewController *controller = (LocationDetailsViewController *)navigationController.topViewController;
+        controller.managedObjectContext = self.managedObjectContext;
+        
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+        Location *location = _locations[indexPath.row];
+        controller.locationToEdit = location;
+    }
 }
 
 @end
