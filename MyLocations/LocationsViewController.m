@@ -22,6 +22,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.navigationItem.rightBarButtonItem = self.editButtonItem;
     [NSFetchedResultsController deleteCacheWithName:@"Locations"];
     [self performFetch];
 }
