@@ -30,6 +30,7 @@
 		E1985D9719AC7D4A001562A2 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E1985D9519AC7D4A001562A2 /* DataModel.xcdatamodeld */; };
 		E1985D9A19AC800C001562A2 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = E1985D9919AC800C001562A2 /* Location.m */; };
 		E1A0014719AED7DB0049089A /* LocationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A0014619AED7DB0049089A /* LocationsViewController.m */; };
+		E1A0014A19AEF3020049089A /* LocationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A0014919AEF3020049089A /* LocationCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +78,8 @@
 		E1985D9919AC800C001562A2 /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
 		E1A0014519AED7DB0049089A /* LocationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationsViewController.h; sourceTree = "<group>"; };
 		E1A0014619AED7DB0049089A /* LocationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationsViewController.m; sourceTree = "<group>"; };
+		E1A0014819AEF3020049089A /* LocationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationCell.h; sourceTree = "<group>"; };
+		E1A0014919AEF3020049089A /* LocationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +161,8 @@
 				E1985D9919AC800C001562A2 /* Location.m */,
 				E1A0014519AED7DB0049089A /* LocationsViewController.h */,
 				E1A0014619AED7DB0049089A /* LocationsViewController.m */,
+				E1A0014819AEF3020049089A /* LocationCell.h */,
+				E1A0014919AEF3020049089A /* LocationCell.m */,
 				E1985D6B19A5F5DF001562A2 /* Images.xcassets */,
 				E1985D5719A5F5DF001562A2 /* Supporting Files */,
 			);
@@ -299,6 +304,7 @@
 				E1985D5D19A5F5DF001562A2 /* main.m in Sources */,
 				E1A0014719AED7DB0049089A /* LocationsViewController.m in Sources */,
 				E1985D8F19AB2EA8001562A2 /* CategoryPickerViewController.m in Sources */,
+				E1A0014A19AEF3020049089A /* LocationCell.m in Sources */,
 				E1985D8C19AAD1D9001562A2 /* LocationDetailsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
