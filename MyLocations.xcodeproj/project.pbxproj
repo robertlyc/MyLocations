@@ -29,6 +29,7 @@
 		E1985D9419AC7C28001562A2 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1985D9319AC7C28001562A2 /* CoreData.framework */; };
 		E1985D9719AC7D4A001562A2 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E1985D9519AC7D4A001562A2 /* DataModel.xcdatamodeld */; };
 		E1985D9A19AC800C001562A2 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = E1985D9919AC800C001562A2 /* Location.m */; };
+		E1A0014719AED7DB0049089A /* LocationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A0014619AED7DB0049089A /* LocationsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +75,8 @@
 		E1985D9619AC7D4A001562A2 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		E1985D9819AC800C001562A2 /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
 		E1985D9919AC800C001562A2 /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
+		E1A0014519AED7DB0049089A /* LocationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationsViewController.h; sourceTree = "<group>"; };
+		E1A0014619AED7DB0049089A /* LocationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +156,8 @@
 				E1985D9519AC7D4A001562A2 /* DataModel.xcdatamodeld */,
 				E1985D9819AC800C001562A2 /* Location.h */,
 				E1985D9919AC800C001562A2 /* Location.m */,
+				E1A0014519AED7DB0049089A /* LocationsViewController.h */,
+				E1A0014619AED7DB0049089A /* LocationsViewController.m */,
 				E1985D6B19A5F5DF001562A2 /* Images.xcassets */,
 				E1985D5719A5F5DF001562A2 /* Supporting Files */,
 			);
@@ -292,6 +297,7 @@
 				E1985D9A19AC800C001562A2 /* Location.m in Sources */,
 				E1985D6719A5F5DF001562A2 /* CurrentLocationViewController.m in Sources */,
 				E1985D5D19A5F5DF001562A2 /* main.m in Sources */,
+				E1A0014719AED7DB0049089A /* LocationsViewController.m in Sources */,
 				E1985D8F19AB2EA8001562A2 /* CategoryPickerViewController.m in Sources */,
 				E1985D8C19AAD1D9001562A2 /* LocationDetailsViewController.m in Sources */,
 			);
@@ -498,6 +504,7 @@
 				E1985D8419A5F5DF001562A2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E1985D8519A5F5DF001562A2 /* Build configuration list for PBXNativeTarget "MyLocationsTests" */ = {
 			isa = XCConfigurationList;
@@ -506,6 +513,7 @@
 				E1985D8719A5F5DF001562A2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
