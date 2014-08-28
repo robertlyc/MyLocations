@@ -7,22 +7,35 @@
 //
 
 #import "LocationsViewController.h"
+#import "Location.h"
 
 @interface LocationsViewController ()
 
 @end
 
-@implementation LocationsViewController
+@implementation LocationsViewController {
+    NSArray *_locations;
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Location" inManagedObjectContext:self.managedObjectContext];
+    [fetchRequest setEntity:entity];
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"data" ascending:YES];
+    [fetchRequest setSortDescriptors:@[sortDescriptor]];
+    
+    NSError *error;
+    NSArray *foundObjects = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    if (foundObjects == nil) {
+        FATAL_CORE_DATA_ERROR(error);
+        return;
+    }
+    
+    _locations = foundObjects;
 }
 
 - (void)didReceiveMemoryWarning
@@ -35,7 +48,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+    return [_locations count];
 }
 
 
@@ -43,11 +56,16 @@
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Location"];
     
+    Location *location = _locations[indexPath.row];
+    
     UILabel *descriptionLabel = (UILabel *)[cell viewWithTag:100];
-    descriptionLabel.text = @"If you can see this";
+    descriptionLabel.text = location.locationDesctription;
     
     UILabel *addressLabel = (UILabel *)[cell viewWithTag:101];
-    addressLabel.text = @"Then it works!";
+    addressLabel.text = [NSString stringWithFormat:@"%@ %@, %@",
+                         location.placemark.subThoroughfare,
+                         location.placemark.thoroughfare,
+                         location.placemark.locality];
     
     return cell;
 }
