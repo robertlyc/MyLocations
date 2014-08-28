@@ -18,4 +18,20 @@
 @dynamic category;
 @dynamic placemark;
 
+- (CLLocationCoordinate2D)coordinate {
+    return CLLocationCoordinate2DMake([self.latitude doubleValue], [self.longtitude doubleValue]);
+}
+
+- (NSString *)title {
+    if ([self.locationDesctription length] > 0) {
+        return self.locationDesctription;
+    } else {
+        return @"(No Description)";
+    }
+}
+
+- (NSString *)subtitle {
+    return self.category;
+}
+
 @end

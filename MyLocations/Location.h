@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 
-@interface Location : NSManagedObject
+@interface Location : NSManagedObject <MKAnnotation>
 
 @property (nonatomic, retain) NSNumber * latitude;
 @property (nonatomic, retain) NSNumber * longtitude;

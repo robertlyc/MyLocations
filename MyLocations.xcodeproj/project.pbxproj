@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E177F54619AF1CCA005F9786 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E177F54519AF1CCA005F9786 /* MapKit.framework */; };
+		E177F54919AF1DCC005F9786 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E177F54819AF1DCC005F9786 /* MapViewController.m */; };
 		E1985D5119A5F5DF001562A2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1985D5019A5F5DF001562A2 /* Foundation.framework */; };
 		E1985D5319A5F5DF001562A2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1985D5219A5F5DF001562A2 /* CoreGraphics.framework */; };
 		E1985D5519A5F5DF001562A2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1985D5419A5F5DF001562A2 /* UIKit.framework */; };
@@ -46,6 +47,8 @@
 
 /* Begin PBXFileReference section */
 		E177F54519AF1CCA005F9786 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		E177F54719AF1DCC005F9786 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		E177F54819AF1DCC005F9786 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		E1985D4D19A5F5DF001562A2 /* MyLocations.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyLocations.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1985D5019A5F5DF001562A2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E1985D5219A5F5DF001562A2 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -167,6 +170,8 @@
 				E1A0014619AED7DB0049089A /* LocationsViewController.m */,
 				E1A0014819AEF3020049089A /* LocationCell.h */,
 				E1A0014919AEF3020049089A /* LocationCell.m */,
+				E177F54719AF1DCC005F9786 /* MapViewController.h */,
+				E177F54819AF1DCC005F9786 /* MapViewController.m */,
 				E1985D6B19A5F5DF001562A2 /* Images.xcassets */,
 				E1985D5719A5F5DF001562A2 /* Supporting Files */,
 			);
@@ -302,6 +307,7 @@
 				E1985D6A19A5F5DF001562A2 /* SecondViewController.m in Sources */,
 				E1985D9719AC7D4A001562A2 /* DataModel.xcdatamodeld in Sources */,
 				E1985D9219AC4CBA001562A2 /* HubView.m in Sources */,
+				E177F54919AF1DCC005F9786 /* MapViewController.m in Sources */,
 				E1985D6119A5F5DF001562A2 /* AppDelegate.m in Sources */,
 				E1985D9A19AC800C001562A2 /* Location.m in Sources */,
 				E1985D6719A5F5DF001562A2 /* CurrentLocationViewController.m in Sources */,
