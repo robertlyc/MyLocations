@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Location.h"
 
-@interface MapViewController : UIViewController 
+
+@interface MapViewController : UIViewController <MKMapViewDelegate, UINavigationBarDelegate>
 
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 

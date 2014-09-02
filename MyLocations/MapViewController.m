@@ -7,6 +7,8 @@
 //
 
 #import "MapViewController.h"
+#import "Location.h"
+#import "LocationDetailsViewController.h"
 
 @interface MapViewController ()
 
@@ -16,6 +18,13 @@
 
 @implementation MapViewController {
     NSArray *_locations;
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    if (self = [super initWithCoder:aDecoder]) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(contextDidChange:) name:NSManagedObjectContextObjectsDidChangeNotification object:self.managedObjectContext];
+    }
+    return self;
 }
 
 - (void)viewDidLoad
@@ -125,7 +134,34 @@
 }
 
 - (void)showLocationDetails:(UIButton *)button {
-    
+    [self performSegueWithIdentifier:@"EditLocation" sender:button];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"EditLocation"]) {
+        UINavigationController *navigationController = segue.destinationViewController;
+        LocationDetailsViewController *controller = (LocationDetailsViewController *)navigationController.topViewController;
+        controller.managedObjectContext = self.managedObjectContext;
+        
+        UIButton *button = (UIButton *)sender;
+        Location *location = _locations[button.tag];
+        controller.locationToEdit = location;
+    }
+}
+
+- (void)contextDidChange:(NSNotification *)notification {
+    if ([self isViewLoaded]) {
+        [self updateLocations];
+    }
+}
+
+#pragma mark - UINavigationBarDelegate
+- (UIBarPosition)positionForBar:(id<UIBarPositioning>)bar {
+    return UIBarPositionTopAttached;
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

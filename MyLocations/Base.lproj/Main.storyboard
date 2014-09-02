@@ -459,6 +459,9 @@
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
+                                <connections>
+                                    <outlet property="delegate" destination="Zmu-gE-Sks" id="aaG-Vo-SC1"/>
+                                </connections>
                             </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -466,6 +469,7 @@
                     <tabBarItem key="tabBarItem" title="Map" id="ggn-RH-BLL"/>
                     <connections>
                         <outlet property="mapView" destination="tb3-cA-Xh1" id="W6W-gR-DTE"/>
+                        <segue destination="2SK-Ry-AbT" kind="modal" identifier="EditLocation" id="Kro-SB-oEZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eAy-Gb-Ezd" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -498,6 +502,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="wuG-rm-fcz"/>
+        <segue reference="Kro-SB-oEZ"/>
     </inferredMetricsTieBreakers>
 </document>
