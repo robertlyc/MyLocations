@@ -11,7 +11,7 @@
 #import "HubView.h"
 #import "Location.h"
 
-@interface LocationDetailsViewController () <UITextViewDelegate>
+@interface LocationDetailsViewController () <UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationBarDelegate>
 
 @property (nonatomic, weak) IBOutlet UITextView *descriptionTextView;
 @property (nonatomic, weak) IBOutlet UILabel *categoryLabel;
@@ -129,6 +129,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0 && indexPath.row == 0) {
         [self.descriptionTextView becomeFirstResponder];
+    } else if (indexPath.section == 1 && indexPath.row == 0) {
+        [self takePhoto];
     }
 }
 
@@ -196,6 +198,23 @@
                             [_locationToEdit.longtitude doubleValue]);
         self.placemark = _locationToEdit.placemark;
     }
+}
+
+- (void)takePhoto {
+    UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+    imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+    imagePicker.delegate = self;
+    imagePicker.allowsEditing = YES;
+    [self presentViewController:imagePicker animated:YES completion:nil];
+}
+
+#pragma mark - UIImagePickerControllerDelegate
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

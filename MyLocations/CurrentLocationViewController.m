@@ -9,7 +9,7 @@
 #import "CurrentLocationViewController.h"
 #import "LocationDetailsViewController.h"
 
-@interface CurrentLocationViewController ()
+@interface CurrentLocationViewController () 
 
 @end
 
