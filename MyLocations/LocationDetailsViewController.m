@@ -11,7 +11,7 @@
 #import "HubView.h"
 #import "Location.h"
 
-@interface LocationDetailsViewController () <UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationBarDelegate, UIActionSheetDelegate>
+@interface LocationDetailsViewController () <UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate>
 
 @property (nonatomic, weak) IBOutlet UITextView *descriptionTextView;
 @property (nonatomic, weak) IBOutlet UILabel *categoryLabel;
