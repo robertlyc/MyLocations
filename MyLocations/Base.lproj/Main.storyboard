@@ -162,6 +162,10 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="VUT-3E-ZXk">
+                                                    <rect key="frame" x="123" y="10" width="144" height="22"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -289,8 +293,10 @@
                         <outlet property="categoryLabel" destination="FBM-UY-Wlj" id="rvm-rs-VlN"/>
                         <outlet property="dateLabel" destination="zLY-3P-xf5" id="AGB-UM-2tj"/>
                         <outlet property="descriptionTextView" destination="znx-GV-grL" id="So8-aQ-i4A"/>
+                        <outlet property="imageView" destination="VUT-3E-ZXk" id="wtw-tc-sEc"/>
                         <outlet property="latitudeLabel" destination="B05-SE-QVV" id="2Zp-aF-cn1"/>
                         <outlet property="longtitudeLabel" destination="4cv-nN-5al" id="4Zv-9n-Col"/>
+                        <outlet property="photoLabel" destination="pCj-4G-6LB" id="vQQ-rb-FLJ"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jWE-sk-CT4" userLabel="First Responder" sceneMemberID="firstResponder"/>
