@@ -90,6 +90,18 @@
     location.date = _date;
     location.placemark = _placemark;
     
+    if (_image != nil) {
+        if (![location hasPhoto]) {
+            location.photoId = @([Location nextPhotoId]);
+        }
+        
+        NSData *data = UIImageJPEGRepresentation(_image, 0.5);
+        NSError *error;
+        if (![data writeToFile:[location photoPath] options:NSDataWritingAtomic error:&error]) {
+            NSLog(@"Error writing file: %@", error);
+        }
+    }
+    
     NSError *error;
     if (![self.managedObjectContext save:&error]) {
         FATAL_CORE_DATA_ERROR(error);
