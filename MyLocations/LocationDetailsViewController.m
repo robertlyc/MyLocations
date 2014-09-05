@@ -29,6 +29,8 @@
     NSString *_categoryName;
     NSDate *_date;
     UIImage *_image;
+    UIImagePickerController *_imagePicker;
+    UIActionSheet *_actionSheet;
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
@@ -36,6 +38,8 @@
         _descriptionText = @"";
         _categoryName = @"No Category";
         _date = [NSDate date];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidEnterBackground) name:UIApplicationDidEnterBackgroundNotification object:nil];
     }
     return self;
 }
@@ -161,6 +165,8 @@
     } else if (buttonIndex == 1) {
         [self choosePhotoFromLibrary];
     }
+    
+    _actionSheet = nil;
 }
 
 #pragma mark - Utility
@@ -220,25 +226,23 @@
 }
 
 - (void)takePhoto {
-    UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
-    imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
-    imagePicker.delegate = self;
-    imagePicker.allowsEditing = YES;
-    [self presentViewController:imagePicker animated:YES completion:nil];
+    _imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+    _imagePicker.delegate = self;
+    _imagePicker.allowsEditing = YES;
+    [self presentViewController:_imagePicker animated:YES completion:nil];
 }
 
 - (void)choosePhotoFromLibrary {
-    UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
-    imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    imagePicker.delegate = self;
-    imagePicker.allowsEditing = YES;
-    [self presentViewController:imagePicker animated:YES completion:nil];
+    _imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    _imagePicker.delegate = self;
+    _imagePicker.allowsEditing = YES;
+    [self presentViewController:_imagePicker animated:YES completion:nil];
 }
 
 - (void)showPhotoMenu {
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Take Photo", @"Choose From Library", nil];
-        [actionSheet showInView:self.view];
+        _actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Take Photo", @"Choose From Library", nil];
+        [_actionSheet showInView:self.view];
     } else {
         [self choosePhotoFromLibrary];
     }
@@ -251,6 +255,7 @@
     self.photoLabel.hidden = YES;
 }
 
+
 #pragma mark - UIImagePickerControllerDelegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     _image = info[UIImagePickerControllerEditedImage];
@@ -258,10 +263,30 @@
     
     [self.tableView reloadData];
     [self dismissViewControllerAnimated:YES completion:nil];
+    _imagePicker = nil;
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     [self dismissViewControllerAnimated:YES completion:nil];
+    _imagePicker = nil;
+}
+
+- (void)applicationDidEnterBackground {
+    if (_imagePicker != nil) {
+        [self dismissViewControllerAnimated:NO completion:nil];
+        _imagePicker = nil;
+    }
+    
+    if (_actionSheet != nil) {
+        [_actionSheet dismissWithClickedButtonIndex:_actionSheet.cancelButtonIndex animated:NO];
+        _actionSheet = nil;
+    }
+    
+    [self.descriptionTextView resignFirstResponder];
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end
