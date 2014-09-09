@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HubView : UIView
+@interface HudView : UIView
 
 @property (nonatomic, strong) NSString *text;
 

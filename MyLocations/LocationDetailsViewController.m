@@ -8,7 +8,7 @@
 
 #import "LocationDetailsViewController.h"
 #import "CategoryPickerViewController.h"
-#import "HubView.h"
+#import "HudView.h"
 #import "Location.h"
 
 @interface LocationDetailsViewController () <UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate>
@@ -71,14 +71,14 @@
 }
 
 - (IBAction)done:(id)sender {
-    HubView *hubView = [HubView hudView:self.navigationController.view animated:YES];
+    HudView *hudView = [HudView hudView:self.navigationController.view animated:YES];
     
     Location *location = nil;
     if (self.locationToEdit != nil) {
-        hubView.text = @"Update";
+        hudView.text = @"Update";
         location = self.locationToEdit;
     } else {
-        hubView.text = @"Tagged";
+        hudView.text = @"Tagged";
         location = [NSEntityDescription insertNewObjectForEntityForName:@"Location" inManagedObjectContext:self.managedObjectContext];
     }
     

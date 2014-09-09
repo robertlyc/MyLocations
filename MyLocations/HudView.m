@@ -6,12 +6,12 @@
 //  Copyright (c) 2014年 SpringShine. All rights reserved.
 //
 
-#import "HubView.h"
+#import "HudView.h"
 
-@implementation HubView
+@implementation HudView
 
 + (instancetype)hudView:(UIView *)view animated:(BOOL)animated {
-    HubView *hubView = [[HubView alloc] initWithFrame:view.bounds];
+    HudView *hubView = [[HudView alloc] initWithFrame:view.bounds];
     hubView.opaque = NO;
     
     [view addSubview:hubView];
