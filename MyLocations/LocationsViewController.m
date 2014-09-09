@@ -114,8 +114,8 @@
     LocationCell *locationCell = (LocationCell *)cell;
     Location *location = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
-    if ([location.locationDesctription length] > 0) {
-        locationCell.descriptionLabel.text = location.locationDesctription;
+    if ([location.locationDescription length] > 0) {
+        locationCell.descriptionLabel.text = location.locationDescription;
     } else {
         locationCell.descriptionLabel.text = @"(No Description)";
     }

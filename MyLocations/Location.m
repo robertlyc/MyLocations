@@ -15,7 +15,7 @@
 @dynamic latitude;
 @dynamic longitude;
 @dynamic date;
-@dynamic locationDesctription;
+@dynamic locationDescription;
 @dynamic category;
 @dynamic placemark;
 
@@ -24,8 +24,8 @@
 }
 
 - (NSString *)title {
-    if ([self.locationDesctription length] > 0) {
-        return self.locationDesctription;
+    if ([self.locationDescription length] > 0) {
+        return self.locationDescription;
     } else {
         return @"(No Description)";
     }

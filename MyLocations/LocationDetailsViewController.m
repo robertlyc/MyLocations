@@ -83,7 +83,7 @@
     }
     
  
-    location.locationDesctription = _descriptionText;
+    location.locationDescription = _descriptionText;
     location.category = _categoryName;
     location.latitude = @(self.coordinate.latitude);
     location.longitude = @(self.coordinate.longitude);
@@ -226,7 +226,7 @@
     if (_locationToEdit != locationToEdit) {
         _locationToEdit = locationToEdit;
         
-        _descriptionText = _locationToEdit.locationDesctription;
+        _descriptionText = _locationToEdit.locationDescription;
         _categoryName = _locationToEdit.category;
         _date = _locationToEdit.date;
         
