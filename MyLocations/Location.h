@@ -13,7 +13,7 @@
 
 @property (nonatomic, retain) NSNumber * photoId;
 @property (nonatomic, retain) NSNumber * latitude;
-@property (nonatomic, retain) NSNumber * longtitude;
+@property (nonatomic, retain) NSNumber * longitude;
 @property (nonatomic, retain) NSDate * date;
 @property (nonatomic, retain) NSString * locationDesctription;
 @property (nonatomic, retain) NSString * category;

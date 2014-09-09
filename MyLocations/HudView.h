@@ -12,6 +12,6 @@
 
 @property (nonatomic, strong) NSString *text;
 
-+ (instancetype)hudView:(UIView *)view animated:(BOOL)animated;
++ (instancetype)hudInView:(UIView *)view animated:(BOOL)animated;
 
 @end

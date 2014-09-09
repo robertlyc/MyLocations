@@ -16,7 +16,7 @@
 @property (nonatomic, weak) IBOutlet UITextView *descriptionTextView;
 @property (nonatomic, weak) IBOutlet UILabel *categoryLabel;
 @property (nonatomic, weak) IBOutlet UILabel *latitudeLabel;
-@property (nonatomic, weak) IBOutlet UILabel *longtitudeLabel;
+@property (nonatomic, weak) IBOutlet UILabel *longitudeLabel;
 @property (nonatomic, weak) IBOutlet UILabel *addressLabel;
 @property (nonatomic, weak) IBOutlet UILabel *dateLabel;
 @property (nonatomic, weak) IBOutlet UIImageView *imageView;
@@ -55,7 +55,7 @@
     self.categoryLabel.text = _categoryName;
     
     self.latitudeLabel.text = [NSString stringWithFormat:@"%.8f", self.coordinate.latitude];
-    self.longtitudeLabel.text = [NSString stringWithFormat:@"%.8f", self.coordinate.longitude];
+    self.longitudeLabel.text = [NSString stringWithFormat:@"%.8f", self.coordinate.longitude];
     
     if (self.placemark != nil) {
         self.addressLabel.text = [self stringFromPlacemark:self.placemark];
@@ -71,7 +71,7 @@
 }
 
 - (IBAction)done:(id)sender {
-    HudView *hudView = [HudView hudView:self.navigationController.view animated:YES];
+    HudView *hudView = [HudView hudInView:self.navigationController.view animated:YES];
     
     Location *location = nil;
     if (self.locationToEdit != nil) {
@@ -86,7 +86,7 @@
     location.locationDesctription = _descriptionText;
     location.category = _categoryName;
     location.latitude = @(self.coordinate.latitude);
-    location.longtitude = @(self.coordinate.longitude);
+    location.longitude = @(self.coordinate.longitude);
     location.date = _date;
     location.placemark = _placemark;
     
@@ -232,7 +232,7 @@
         
         self.coordinate = CLLocationCoordinate2DMake(
                             [_locationToEdit.latitude doubleValue],
-                            [_locationToEdit.longtitude doubleValue]);
+                            [_locationToEdit.longitude doubleValue]);
         self.placemark = _locationToEdit.placemark;
     }
 }

@@ -128,7 +128,7 @@
     } else {
         locationCell.addressLabel.text = [NSString stringWithFormat:@"Lat: %.8f, Long: %.8f",
                                           [location.latitude doubleValue],
-                                          [location.longtitude doubleValue]];
+                                          [location.longitude doubleValue]];
     }
     
 }

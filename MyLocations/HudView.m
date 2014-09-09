@@ -10,15 +10,15 @@
 
 @implementation HudView
 
-+ (instancetype)hudView:(UIView *)view animated:(BOOL)animated {
-    HudView *hubView = [[HudView alloc] initWithFrame:view.bounds];
-    hubView.opaque = NO;
++ (instancetype)hudInView:(UIView *)view animated:(BOOL)animated {
+    HudView *hudView = [[HudView alloc] initWithFrame:view.bounds];
+    hudView.opaque = NO;
     
-    [view addSubview:hubView];
+    [view addSubview:hudView];
     view.userInteractionEnabled = NO;
     
-    [hubView showAnimated:animated];
-    return hubView;
+    [hudView showAnimated:animated];
+    return hudView;
 }
 
 - (void)drawRect:(CGRect)rect {

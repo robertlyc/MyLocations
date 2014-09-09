@@ -74,10 +74,10 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Tag" image="first" id="u1e-5L-l1D"/>
                     <connections>
-                        <outlet property="LongtitudeLabel" destination="7tb-LB-VGV" id="hn3-jU-YAW"/>
                         <outlet property="addressLabel" destination="cJ8-lf-GlI" id="18x-D0-25A"/>
                         <outlet property="getButton" destination="nkN-B1-XhO" id="xTq-UU-o65"/>
                         <outlet property="latitudeLabel" destination="0AE-BS-Jkg" id="yC1-Kd-MeA"/>
+                        <outlet property="longitudeLabel" destination="7tb-LB-VGV" id="9oN-MV-gHu"/>
                         <outlet property="messageLabel" destination="fj7-QB-npi" id="LcA-Tm-erD"/>
                         <outlet property="tagButton" destination="pkS-Am-QC8" id="CXa-n0-4le"/>
                     </connections>
@@ -295,7 +295,7 @@
                         <outlet property="descriptionTextView" destination="znx-GV-grL" id="So8-aQ-i4A"/>
                         <outlet property="imageView" destination="VUT-3E-ZXk" id="wtw-tc-sEc"/>
                         <outlet property="latitudeLabel" destination="B05-SE-QVV" id="2Zp-aF-cn1"/>
-                        <outlet property="longtitudeLabel" destination="4cv-nN-5al" id="4Zv-9n-Col"/>
+                        <outlet property="longitudeLabel" destination="4cv-nN-5al" id="39B-ok-LUv"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jWE-sk-CT4" userLabel="First Responder" sceneMemberID="firstResponder"/>

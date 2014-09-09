@@ -136,7 +136,7 @@
 - (void)updateLabels {
     if (_location != nil) {
         self.latitudeLabel.text = [NSString stringWithFormat:@"%.8f", _location.coordinate.latitude];
-        self.LongtitudeLabel.text = [NSString stringWithFormat:@"%.8f", _location.coordinate.longitude];
+        self.longitudeLabel.text = [NSString stringWithFormat:@"%.8f", _location.coordinate.longitude];
         self.tagButton.hidden = NO;
         self.messageLabel.text = @"";
         
@@ -152,7 +152,7 @@
         
     } else {
         self.latitudeLabel.text = @"";
-        self.LongtitudeLabel.text = @"";
+        self.longitudeLabel.text = @"";
         self.tagButton.hidden = YES;
         
         NSString *statusMessage;

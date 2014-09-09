@@ -13,14 +13,14 @@
 
 @dynamic photoId;
 @dynamic latitude;
-@dynamic longtitude;
+@dynamic longitude;
 @dynamic date;
 @dynamic locationDesctription;
 @dynamic category;
 @dynamic placemark;
 
 - (CLLocationCoordinate2D)coordinate {
-    return CLLocationCoordinate2DMake([self.latitude doubleValue], [self.longtitude doubleValue]);
+    return CLLocationCoordinate2DMake([self.latitude doubleValue], [self.longitude doubleValue]);
 }
 
 - (NSString *)title {
