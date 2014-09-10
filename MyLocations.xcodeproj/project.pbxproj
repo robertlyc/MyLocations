@@ -169,7 +169,6 @@
 				E1985D8D19AB2EA8001562A2 /* CategoryPickerViewController.h */,
 				E1985D8E19AB2EA8001562A2 /* CategoryPickerViewController.m */,
 				E1985D9019AC4CBA001562A2 /* HudView.h */,
-				E1A6D87A19C0B49900854D84 /* Images.xcassets */,
 				E1985D9119AC4CBA001562A2 /* HudView.m */,
 				E1985D9519AC7D4A001562A2 /* DataModel.xcdatamodeld */,
 				E1985D9819AC800C001562A2 /* Location.h */,
@@ -188,6 +187,7 @@
 				E1A6D87D19C0B5B500854D84 /* MyTabBarController.m */,
 				E1A6D87F19C0B69F00854D84 /* MyNavigationController.h */,
 				E1A6D88019C0B69F00854D84 /* MyNavigationController.m */,
+				E1A6D87A19C0B49900854D84 /* Images.xcassets */,
 				E1985D5719A5F5DF001562A2 /* Supporting Files */,
 			);
 			path = MyLocations;

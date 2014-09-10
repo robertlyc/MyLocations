@@ -24,6 +24,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.tableView.backgroundColor = [UIColor blackColor];
+    self.tableView.separatorColor = [UIColor colorWithWhite:0.1f alpha:0.2f];
+    
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
     [NSFetchedResultsController deleteCacheWithName:@"Locations"];
     [self performFetch];
@@ -144,6 +148,17 @@
         }
     }
     locationCell.photoImageView.image = image;
+    
+    locationCell.backgroundColor = [UIColor blackColor];
+    locationCell.descriptionLabel.textColor = [UIColor whiteColor];
+    locationCell.descriptionLabel.highlightedTextColor = locationCell.descriptionLabel.textColor;
+    
+    locationCell.addressLabel.textColor = [UIColor colorWithWhite:1.0f alpha:0.4f];
+    locationCell.addressLabel.highlightedTextColor = locationCell.addressLabel.textColor;
+    
+    UIView *selectionView = [[UIView alloc] initWithFrame:CGRectZero];
+    selectionView.backgroundColor = [UIColor colorWithWhite:1.0f alpha:0.2f];
+    locationCell.selectedBackgroundView = selectionView;
     
 }
 
