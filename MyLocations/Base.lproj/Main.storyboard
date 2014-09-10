@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="8YX-ce-x5E">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="8YX-ce-x5E">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <deployment defaultVersion="1808" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
-        <!--Current Location View Controller - First-->
+        <!--First-->
         <scene sceneID="W3I-pn-N6e">
             <objects>
                 <viewController title="First" id="CZ4-MO-1fc" customClass="CurrentLocationViewController" sceneMemberID="viewController">
@@ -86,7 +87,7 @@
             </objects>
             <point key="canvasLocation" x="933" y="-158"/>
         </scene>
-        <!--Location Details View Controller - Tag Location-->
+        <!--Tag Location-->
         <scene sceneID="ru4-9n-cyA">
             <objects>
                 <tableViewController id="XBY-d4-dk0" customClass="LocationDetailsViewController" sceneMemberID="viewController">
@@ -105,7 +106,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="(Description goes here)" id="znx-GV-grL">
-                                                    <rect key="frame" x="15" y="10" width="290" height="68"/>
+                                                    <rect key="frame" x="15" y="9.5" width="290" height="69"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -382,7 +383,7 @@
             </objects>
             <point key="canvasLocation" x="1851" y="571"/>
         </scene>
-        <!--Locations View Controller - Locations-->
+        <!--Locations-->
         <scene sceneID="aQg-X5-gAu">
             <objects>
                 <tableViewController id="acp-9t-HFj" customClass="LocationsViewController" sceneMemberID="viewController">
@@ -399,24 +400,29 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Rvj-ce-QVu">
-                                            <rect key="frame" x="15" y="6" width="290" height="21"/>
+                                            <rect key="frame" x="75" y="6" width="235" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1cq-he-oIv">
-                                            <rect key="frame" x="15" y="30" width="290" height="17"/>
+                                            <rect key="frame" x="75" y="30" width="230" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" white="0.0" alpha="0.5" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="ZWe-XI-iNT">
+                                            <rect key="frame" x="15" y="2" width="52" height="52"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="addressLabel" destination="1cq-he-oIv" id="Uzn-f3-I1r"/>
                                     <outlet property="descriptionLabel" destination="Rvj-ce-QVu" id="DZT-pN-SFc"/>
+                                    <outlet property="photoImageView" destination="ZWe-XI-iNT" id="Qfp-EL-Xkj"/>
                                     <segue destination="2SK-Ry-AbT" kind="modal" identifier="EditLocation" id="wuG-rm-fcz"/>
                                 </connections>
                             </tableViewCell>
@@ -432,7 +438,7 @@
             </objects>
             <point key="canvasLocation" x="1185" y="571"/>
         </scene>
-        <!--Map View Controller - Map-->
+        <!--Map-->
         <scene sceneID="P4c-ls-UXh">
             <objects>
                 <viewController id="Zmu-gE-Sks" customClass="MapViewController" sceneMemberID="viewController">
@@ -481,7 +487,7 @@
             </objects>
             <point key="canvasLocation" x="917" y="1337"/>
         </scene>
-        <!--Navigation Controller - Locations-->
+        <!--Locations-->
         <scene sceneID="V2K-xj-HYS">
             <objects>
                 <navigationController definesPresentationContext="YES" id="aRB-ak-VpX" sceneMemberID="viewController">

@@ -53,16 +53,27 @@
 
 - (UIImage *)photoImage {
     NSAssert(self.photoId != nil, @"No Photo ID set");
-    NSAssert([self.photoId integerValue] != 1, @"Photo ID is -1");
+    NSAssert([self.photoId integerValue] != -1, @"Photo ID is -1");
     return [UIImage imageWithContentsOfFile:[self photoPath]];
 }
 
 + (NSInteger)nextPhotoId {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSInteger photoId = [defaults integerForKey:@"PhotoID"];
-    [defaults setInteger:photoId + 1 forKey:@"PhotoID"];
+    [defaults setInteger:photoId+1 forKey:@"PhotoID"];
     [defaults synchronize];
     return photoId;
+}
+
+- (void)removePhotoFile {
+    NSString *path = [self photoPath];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    if ([fileManager fileExistsAtPath:path]) {
+        NSError *error;
+        if (![fileManager removeItemAtPath:path error:&error]) {
+            NSLog(@"Error moving file: %@", error);
+        }
+    }
 }
 
 @end

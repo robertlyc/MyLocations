@@ -33,6 +33,7 @@
 		E1985D9A19AC800C001562A2 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = E1985D9919AC800C001562A2 /* Location.m */; };
 		E1A0014719AED7DB0049089A /* LocationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A0014619AED7DB0049089A /* LocationsViewController.m */; };
 		E1A0014A19AEF3020049089A /* LocationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A0014919AEF3020049089A /* LocationCell.m */; };
+		E1A6D87619C0484800854D84 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A6D87519C0484800854D84 /* UIImage+Resize.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +86,8 @@
 		E1A0014619AED7DB0049089A /* LocationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationsViewController.m; sourceTree = "<group>"; };
 		E1A0014819AEF3020049089A /* LocationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationCell.h; sourceTree = "<group>"; };
 		E1A0014919AEF3020049089A /* LocationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationCell.m; sourceTree = "<group>"; };
+		E1A6D87419C0484800854D84 /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
+		E1A6D87519C0484800854D84 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,6 +175,8 @@
 				E1A0014919AEF3020049089A /* LocationCell.m */,
 				E177F54719AF1DCC005F9786 /* MapViewController.h */,
 				E177F54819AF1DCC005F9786 /* MapViewController.m */,
+				E1A6D87419C0484800854D84 /* UIImage+Resize.h */,
+				E1A6D87519C0484800854D84 /* UIImage+Resize.m */,
 				E1985D6B19A5F5DF001562A2 /* Images.xcassets */,
 				E1985D5719A5F5DF001562A2 /* Supporting Files */,
 			);
@@ -314,6 +319,7 @@
 				E1985D5D19A5F5DF001562A2 /* main.m in Sources */,
 				E1A0014719AED7DB0049089A /* LocationsViewController.m in Sources */,
 				E1985D8F19AB2EA8001562A2 /* CategoryPickerViewController.m in Sources */,
+				E1A6D87619C0484800854D84 /* UIImage+Resize.m in Sources */,
 				E1A0014A19AEF3020049089A /* LocationCell.m in Sources */,
 				E1985D8C19AAD1D9001562A2 /* LocationDetailsViewController.m in Sources */,
 			);
