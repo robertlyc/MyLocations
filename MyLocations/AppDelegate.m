@@ -25,6 +25,8 @@ NSString * const ManagedObjectContextSaveDidFailNotification = @"ManagedObjectCo
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [self customizeAppearance];
+    
     UITabBarController *tabBarController = (UITabBarController *)self.window.rootViewController;
     CurrentLocationViewController *currentLocationViewController = (CurrentLocationViewController *)tabBarController.viewControllers[0];
     currentLocationViewController.managedObjectContext = self.managedObjectContext;
@@ -126,6 +128,13 @@ NSString * const ManagedObjectContextSaveDidFailNotification = @"ManagedObjectCo
 #pragma mark - UIAlertViewDelegate
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     abort();
+}
+
+- (void)customizeAppearance {
+    [[UINavigationBar appearance] setBarTintColor:[UIColor blackColor]];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{
+        NSForegroundColorAttributeName : [UIColor whiteColor]}];
+    [[UITabBar appearance] setBarTintColor:[UIColor blackColor]];
 }
 
 @end

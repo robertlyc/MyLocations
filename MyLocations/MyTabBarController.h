@@ -1,13 +1,13 @@
 //
-//  SecondViewController.h
+//  MyTabBarController.h
 //  MyLocations
 //
-//  Created by RoBeRt on 14-8-21.
+//  Created by RoBeRt on 14-9-11.
 //  Copyright (c) 2014年 SpringShine. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface SecondViewController : UIViewController
+@interface MyTabBarController : UITabBarController
 
 @end
