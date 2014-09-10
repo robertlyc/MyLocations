@@ -90,7 +90,7 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
-    return [sectionInfo name];
+    return [[sectionInfo name] uppercaseString];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -146,8 +146,14 @@
         if (image != nil) {
             image = [image resizedImageWithBounds:CGSizeMake(52, 52)];
         }
+    } else {
+        image = [UIImage imageNamed:@"No Photo"];
     }
     locationCell.photoImageView.image = image;
+    
+    locationCell.photoImageView.layer.cornerRadius = locationCell.photoImageView.bounds.size.width / 2.0f;
+    locationCell.photoImageView.clipsToBounds = YES;
+    locationCell.separatorInset = UIEdgeInsetsMake(0, 82, 0, 0);
     
     locationCell.backgroundColor = [UIColor blackColor];
     locationCell.descriptionLabel.textColor = [UIColor whiteColor];
