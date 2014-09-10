@@ -88,19 +88,19 @@
     location.latitude = @(self.coordinate.latitude);
     location.longitude = @(self.coordinate.longitude);
     location.date = _date;
-    location.placemark = _placemark;
+    location.placemark = self.placemark;
     
-    if (_image != nil) {
-        if (![location hasPhoto]) {
-            location.photoId = @([Location nextPhotoId]);
-        }
-        
-        NSData *data = UIImageJPEGRepresentation(_image, 0.5);
-        NSError *error;
-        if (![data writeToFile:[location photoPath] options:NSDataWritingAtomic error:&error]) {
-            NSLog(@"Error writing file: %@", error);
-        }
-    }
+//    if (_image != nil) {
+//        if (![location hasPhoto]) {
+//            location.photoId = @([Location nextPhotoId]);
+//        }
+//        
+//        NSData *data = UIImageJPEGRepresentation(_image, 0.5);
+//        NSError *error;
+//        if (![data writeToFile:[location photoPath] options:NSDataWritingAtomic error:&error]) {
+//            NSLog(@"Error writing file: %@", error);
+//        }
+//    }
     
     NSError *error;
     if (![self.managedObjectContext save:&error]) {
@@ -238,6 +238,7 @@
 }
 
 - (void)takePhoto {
+    _imagePicker = [[UIImagePickerController alloc] init];
     _imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
     _imagePicker.delegate = self;
     _imagePicker.allowsEditing = YES;
@@ -245,6 +246,7 @@
 }
 
 - (void)choosePhotoFromLibrary {
+    _imagePicker = [[UIImagePickerController alloc] init];
     _imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     _imagePicker.delegate = self;
     _imagePicker.allowsEditing = YES;
