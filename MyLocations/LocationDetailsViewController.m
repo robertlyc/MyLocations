@@ -271,7 +271,7 @@
 }
 
 - (void)showImage:(UIImage *)image {
-    self.imageView.image = _image;
+    self.imageView.image = image;
     self.imageView.hidden = NO;
     self.imageView.frame = CGRectMake(10, 10, 260, 260);
     self.photoLabel.hidden = YES;
