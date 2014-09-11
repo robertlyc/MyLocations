@@ -12,6 +12,10 @@
 
 @interface CurrentLocationViewController () <UITabBarControllerDelegate>
 
+@property (weak, nonatomic) IBOutlet UILabel *latitudeTextLabel;
+@property (weak, nonatomic) IBOutlet UILabel *longitudeTextLabel;
+@property (weak, nonatomic) IBOutlet UIView *containerView;
+
 @end
 
 @implementation CurrentLocationViewController {
@@ -19,6 +23,9 @@
     CLLocation *_location;
     BOOL _updatingLocation;
     NSError *_lastLocationError;
+    
+    UIButton *_logoButton;
+    BOOL _logoVisible;
     
     CLGeocoder *_geocoder;
     CLPlacemark *_placemark;
@@ -37,13 +44,21 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	[self updateLabels];
-    [self configureGetButton];
     self.tabBarController.delegate = self;
     self.tabBarController.tabBar.translucent = NO;
 }
 
+- (void)viewWillLayoutSubviews {
+    [super viewWillLayoutSubviews];
+    [self updateLabels];
+    [self configureGetButton];
+}
+
 - (IBAction)getLocation:(id)sender {
+    if (_logoVisible) {
+        [self hideLogoView];
+    }
+    
     if (_updatingLocation) {
         [self stopLocationManager];
     } else {
@@ -143,6 +158,9 @@
         self.tagButton.hidden = NO;
         self.messageLabel.text = @"";
         
+        self.latitudeTextLabel.hidden = NO;
+        self.longitudeTextLabel.hidden = NO;
+        
         if (_placemark != nil) {
             self.addressLabel.text = [self stringFromPlacemark:_placemark];
         } else if (_performingReverseGeocoding) {
@@ -170,10 +188,13 @@
         } else if (_updatingLocation) {
             statusMessage = @"Searching...";
         } else {
-            statusMessage = @"Press the button to start";
+            statusMessage = @"";
+            [self showLogoView];
         }
 
         self.messageLabel.text = statusMessage;
+        self.latitudeTextLabel.hidden = YES;
+        self.longitudeTextLabel.hidden = YES;
     }
 }
 
@@ -262,5 +283,29 @@
     return YES;
 }
 
+#pragma mark - Logo View
+- (void)showLogoView {
+    if (_logoVisible) {
+        return;
+    }
+    
+    _logoVisible = YES;
+    self.containerView.hidden = YES;
+    
+    _logoButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_logoButton setBackgroundImage:[UIImage imageNamed:@"Logo"] forState:UIControlStateNormal];
+    [_logoButton sizeToFit];
+    [_logoButton addTarget:self action:@selector(getLocation:) forControlEvents:UIControlEventTouchUpInside];
+    _logoButton.center = CGPointMake(self.view.bounds.size.width / 2.0f, self.view.bounds.size.height / 2.0f -49.0f);
+    
+    [self.view addSubview:_logoButton];
+}
+
+- (void)hideLogoView {
+    _logoVisible = NO;
+    self.containerView.hidden = NO;
+    [_logoButton removeFromSuperview];
+    _logoButton = nil;
+}
 
 @end
