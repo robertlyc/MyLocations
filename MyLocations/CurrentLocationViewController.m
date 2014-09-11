@@ -183,6 +183,7 @@
     } else {
         self.latitudeLabel.text = @"";
         self.longitudeLabel.text = @"";
+        self.addressLabel.text = @"";
         self.tagButton.hidden = YES;
         
         NSString *statusMessage;
@@ -211,7 +212,7 @@
     if (_updatingLocation) {
         [self.getButton setTitle:@"Stop" forState:UIControlStateNormal];
         
-        if (_spinner) {
+        if (_spinner == nil) {
             _spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
             _spinner.center = CGPointMake(self.messageLabel.center.x, self.messageLabel.center.y + _spinner.bounds.size.height / 2.0f + 15.0f);
             [_spinner startAnimating];
@@ -314,16 +315,21 @@
     [_logoButton setBackgroundImage:[UIImage imageNamed:@"Logo"] forState:UIControlStateNormal];
     [_logoButton sizeToFit];
     [_logoButton addTarget:self action:@selector(getLocation:) forControlEvents:UIControlEventTouchUpInside];
-    _logoButton.center = CGPointMake(self.view.bounds.size.width / 2.0f, self.view.bounds.size.height / 2.0f -49.0f);
+    _logoButton.center = CGPointMake(self.view.bounds.size.width / 2.0f, self.view.bounds.size.height / 2.0f);
     
     [self.view addSubview:_logoButton];
 }
 
 - (void)hideLogoView {
+    if (!_logoVisible) {
+        return;
+    }
+    
     _logoVisible = NO;
     self.containerView.hidden = NO;
     
-    self.containerView.center = CGPointMake(self.view.bounds.size.width * 2.0f, self.view.bounds.size.height / 2.0f + 40.f);
+
+    self.containerView.center = CGPointMake(self.view.bounds.size.width * 2.0f, self.containerView.bounds.size.height / 2.0f + 40.0f);
     CABasicAnimation *panelMover = [CABasicAnimation animationWithKeyPath:@"position"];
     panelMover.removedOnCompletion = NO;
     panelMover.fillMode = kCAFillModeForwards;
@@ -355,7 +361,7 @@
 
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
     [self.containerView.layer removeAllAnimations];
-    self.containerView.center = CGPointMake(self.view.bounds.size.width / 2.0f, self.view.bounds.size.height / 2.0f + 40.0f);
+    self.containerView.center = CGPointMake(self.view.bounds.size.width / 2.0f, self.containerView.bounds.size.height / 2.0f + 40.0f);
     [_logoButton.layer removeAllAnimations];
     [_logoButton removeFromSuperview];
     _logoButton = nil;
@@ -389,3 +395,4 @@
 }
 
 @end
+
