@@ -315,6 +315,7 @@
                         <outlet property="imageView" destination="VUT-3E-ZXk" id="wtw-tc-sEc"/>
                         <outlet property="latitudeLabel" destination="B05-SE-QVV" id="2Zp-aF-cn1"/>
                         <outlet property="longitudeLabel" destination="4cv-nN-5al" id="39B-ok-LUv"/>
+                        <outlet property="photoLabel" destination="pCj-4G-6LB" id="t2g-RI-1sH"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jWE-sk-CT4" userLabel="First Responder" sceneMemberID="firstResponder"/>

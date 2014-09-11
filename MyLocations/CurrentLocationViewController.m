@@ -9,6 +9,7 @@
 #import "CurrentLocationViewController.h"
 #import "LocationDetailsViewController.h"
 #import "NSMutableString+AddText.h"
+#import <AudioToolbox/AudioServices.h>
 
 @interface CurrentLocationViewController () <UITabBarControllerDelegate>
 
@@ -26,6 +27,9 @@
     
     UIButton *_logoButton;
     BOOL _logoVisible;
+    
+    UIActivityIndicatorView *_spinner;
+    SystemSoundID _soundID;
     
     CLGeocoder *_geocoder;
     CLPlacemark *_placemark;
@@ -46,6 +50,7 @@
     [super viewDidLoad];
     self.tabBarController.delegate = self;
     self.tabBarController.tabBar.translucent = NO;
+    [self loadSoundEffect];
 }
 
 - (void)viewWillLayoutSubviews {
@@ -130,6 +135,10 @@
                 
                 _lastLocationError = error;
                 if (error == nil && [placemarks count] > 0) {
+                    if (_placemark == nil) {
+                        NSLog(@"First Time!");
+                        [self playSoundEffect];
+                    }
                     _placemark = [placemarks lastObject];
                 } else {
                     _placemark = nil;
@@ -201,8 +210,17 @@
 - (void)configureGetButton {
     if (_updatingLocation) {
         [self.getButton setTitle:@"Stop" forState:UIControlStateNormal];
+        
+        if (_spinner) {
+            _spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+            _spinner.center = CGPointMake(self.messageLabel.center.x, self.messageLabel.center.y + _spinner.bounds.size.height / 2.0f + 15.0f);
+            [_spinner startAnimating];
+            [self.containerView addSubview:_spinner];
+        }
     } else {
         [self.getButton setTitle:@"Get My Location" forState:UIControlStateNormal];
+        [_spinner removeFromSuperview];
+        _spinner = nil;
     }
 }
 
@@ -304,8 +322,70 @@
 - (void)hideLogoView {
     _logoVisible = NO;
     self.containerView.hidden = NO;
+    
+    self.containerView.center = CGPointMake(self.view.bounds.size.width * 2.0f, self.view.bounds.size.height / 2.0f + 40.f);
+    CABasicAnimation *panelMover = [CABasicAnimation animationWithKeyPath:@"position"];
+    panelMover.removedOnCompletion = NO;
+    panelMover.fillMode = kCAFillModeForwards;
+    panelMover.duration = 0.6;
+    panelMover.fromValue = [NSValue valueWithCGPoint:self.containerView.center];
+    panelMover.toValue = [NSValue valueWithCGPoint:CGPointMake(160.0f, self.containerView.center.y)];
+    panelMover.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
+    panelMover.delegate = self;
+    [self.containerView.layer addAnimation:panelMover forKey:@"panelMover"];
+    
+    CABasicAnimation *logoMover = [CABasicAnimation animationWithKeyPath:@"position"];
+    logoMover.removedOnCompletion = NO;
+    logoMover.fillMode = kCAFillModeForwards;
+    logoMover.duration = 0.5;
+    logoMover.fromValue = [NSValue valueWithCGPoint:_logoButton.center];
+    logoMover.toValue = [NSValue valueWithCGPoint:CGPointMake(-160.0f, _logoButton.center.y)];
+    logoMover.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
+    [_logoButton.layer addAnimation:logoMover forKey:@"logoMover"];
+    
+    CABasicAnimation *logoRotator = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+    logoRotator.removedOnCompletion = NO;
+    logoRotator.fillMode = kCAFillModeForwards;
+    logoRotator.duration = 0.5;
+    logoRotator.fromValue = @0.0f;
+    logoRotator.toValue = @(-2.0f * M_PI);
+    logoRotator.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
+    [_logoButton.layer addAnimation:logoRotator forKey:@"logoRotator"];
+}
+
+- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
+    [self.containerView.layer removeAllAnimations];
+    self.containerView.center = CGPointMake(self.view.bounds.size.width / 2.0f, self.view.bounds.size.height / 2.0f + 40.0f);
+    [_logoButton.layer removeAllAnimations];
     [_logoButton removeFromSuperview];
     _logoButton = nil;
+}
+
+#pragma mark - Sound Effect
+- (void)loadSoundEffect
+{
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"Sound.caf" ofType:nil];
+    
+    NSURL *fileURL = [NSURL fileURLWithPath:path isDirectory:NO];
+    if (fileURL == nil) {
+        NSLog(@"NSURL is nil for path: %@", path);
+        return;
+    }
+    
+    OSStatus error = AudioServicesCreateSystemSoundID((__bridge CFURLRef)fileURL, &_soundID);
+    if (error != kAudioServicesNoError) {
+        NSLog(@"Error code %ld loading sound at path: %@", error, path);
+        return;
+    }
+}
+
+- (void)unloadSoundEffect {
+    AudioServicesDisposeSystemSoundID(_soundID);
+    _soundID = 0;
+}
+
+- (void)playSoundEffect {
+    AudioServicesPlaySystemSound(_soundID);
 }
 
 @end
